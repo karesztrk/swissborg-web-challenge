@@ -13,3 +13,17 @@ npm run dev
 # or
 yarn dev
 ```
+
+## How to test?
+
+To test components or their logic, you can execute unit tests.
+
+### Unit test
+
+Unit tests are executed by [Jest](https://jestjs.io/).
+
+```bash
+npm run test
+# or
+yarn test
+```

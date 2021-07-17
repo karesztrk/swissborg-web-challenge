@@ -28,13 +28,27 @@ const Trades: FC<TradesProps> = ({ trades, symbol }) => {
       : undefined;
     return (
       <Tr key={trade.currency}>
-        <Td>{trade.currency}</Td>
-        <Td isNumeric>{localizePrice(trade.completedDeposits)}</Td>
-        <Td isNumeric>{localizePrice(trade.completedWithrawals)}</Td>
-        <Td isNumeric>{localizePrice(trade.pendingDeposits)}</Td>
-        <Td isNumeric>{localizePrice(trade.pendingWithrawals)}</Td>
-        <Td isNumeric>{localizePrice(trade.balance)}</Td>
-        <Td isNumeric textColor={balanceColor}>
+        <Td data-testid='trade-curreny'>{trade.currency}</Td>
+        <Td data-testid='trade-completed-deposits' isNumeric>
+          {localizePrice(trade.completedDeposits)}
+        </Td>
+        <Td data-testid='trade-completed-withdrawals' isNumeric>
+          {localizePrice(trade.completedWithrawals)}
+        </Td>
+        <Td data-testid='trade-pending-deposits' isNumeric>
+          {localizePrice(trade.pendingDeposits)}
+        </Td>
+        <Td data-testid='trade-pending-withdrawals' isNumeric>
+          {localizePrice(trade.pendingWithrawals)}
+        </Td>
+        <Td data-testid='trade-balance' isNumeric>
+          {localizePrice(trade.balance)}
+        </Td>
+        <Td
+          data-testid='trade-rated-balance'
+          isNumeric
+          textColor={balanceColor}
+        >
           {ratedBalanceAvailable ? (
             `${localizePrice(trade.ratedBalance)} ${symbol}`
           ) : (
@@ -50,7 +64,7 @@ const Trades: FC<TradesProps> = ({ trades, symbol }) => {
   };
 
   return (
-    <Table variant='simple'>
+    <Table data-testid='trades-table' variant='simple'>
       <TableCaption>Trades</TableCaption>
       <Thead>
         <Tr>

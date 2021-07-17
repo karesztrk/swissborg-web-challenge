@@ -18,12 +18,16 @@ interface TransactionsProps {
 }
 
 const Transactions: FC<TransactionsProps> = ({ ratedTransactions, symbol }) => {
-  const renderRow = (tx) => (
+  const renderRow = (tx: RatedTransaction) => (
     <Tr key={tx.id}>
-      <Td>{new Date(tx.timestamp).toLocaleString()}</Td>
-      <Td>{tx.currency}</Td>
-      <Td isNumeric>{tx.amount}</Td>
-      <Td isNumeric>
+      <Td data-testid='transaction-timestamp'>
+        {new Date(tx.timestamp).toLocaleString()}
+      </Td>
+      <Td data-testid='transaction-currency'>{tx.currency}</Td>
+      <Td data-testid='transaction-amount' isNumeric>
+        {tx.amount}
+      </Td>
+      <Td data-testid='transaction-rated-amount' isNumeric>
         {tx.ratedAmount ? (
           `${localizePrice(tx.ratedAmount)} ${symbol}`
         ) : (
@@ -32,8 +36,11 @@ const Transactions: FC<TransactionsProps> = ({ ratedTransactions, symbol }) => {
           </Tooltip>
         )}
       </Td>
-      <Td textTransform='capitalize'>{tx.type}</Td>
+      <Td data-testid='transaction-type' textTransform='capitalize'>
+        {tx.type}
+      </Td>
       <Td
+        data-testid='transaction-status'
         textTransform='capitalize'
         textColor={tx.status === 'pending' ? 'orange.400' : 'green.400'}
       >
@@ -43,7 +50,7 @@ const Transactions: FC<TransactionsProps> = ({ ratedTransactions, symbol }) => {
   );
 
   return (
-    <Table variant='simple'>
+    <Table data-testid='transactions-table' variant='simple'>
       <TableCaption>Transactions</TableCaption>
       <Thead>
         <Tr>

@@ -62,13 +62,14 @@ const Index: FC<IndexProps> = ({ transactions = [], eurRate = {} }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const txResponse = await fetch('http://localhost:8080/api/transactions');
+    const apiPath = process.env.apiPath;
+    const txResponse = await fetch(`${apiPath}/transactions`);
     const txResult = await txResponse.json();
     const transactions = txResult?.transactions;
 
-    const rateResponse = await fetch('http://localhost:8080/api/eur-rates');
+    const rateResponse = await fetch(`${apiPath}/eur-rates`);
     const eurRate = await rateResponse.json();
     return {
       props: {

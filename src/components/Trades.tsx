@@ -57,8 +57,8 @@ const Trades: FC<TradesProps> = ({ trades, symbol }) => {
           <Th>Currency</Th>
           <Th>Total completed deposits</Th>
           <Th>Total completed withdrawals</Th>
-          <Th>Total pending withdrawals</Th>
           <Th>Total pending deposits</Th>
+          <Th>Total pending withdrawals</Th>
           <Th>Total balance</Th>
           <Th>Total balance eur equiv</Th>
         </Tr>

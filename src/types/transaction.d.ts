@@ -19,14 +19,16 @@ export interface Rates {
   [key: string]: number;
 }
 
+export interface Trade {
+  currency: string;
+  completedDeposits: number;
+  completedWithrawals: number;
+  pendingDeposits: number;
+  pendingWithrawals: number;
+  balance: number;
+  ratedBalance: number;
+}
+
 export interface Trades {
-  [key: string]: {
-    currency: string;
-    completedDeposits: number;
-    completedWithrawals: number;
-    pendingDeposits: number;
-    pendingWithrawals: number;
-    balance: number;
-    ratedBalance: number;
-  };
+  [key: string]: Trade;
 }

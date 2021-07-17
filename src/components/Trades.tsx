@@ -5,10 +5,11 @@ import {
   Td,
   Th,
   Thead,
+  Tooltip,
   Tr,
 } from '@chakra-ui/react';
 import { Trades as TradesType } from '@types/transaction';
-import { localizePrice } from '@util/index';
+import { localizePrice } from '@util/format';
 import React from 'react';
 import { FC } from 'react';
 
@@ -18,6 +19,36 @@ interface TradesProps {
 }
 
 const Trades: FC<TradesProps> = ({ trades, symbol }) => {
+  const renderRow = (trade) => {
+    const ratedBalanceAvailable = !!trade.ratedBalance;
+    const balanceColor = ratedBalanceAvailable
+      ? trade.ratedBalance < 0
+        ? 'orange.400'
+        : 'green.400'
+      : undefined;
+    return (
+      <Tr key={trade.currency}>
+        <Td>{trade.currency}</Td>
+        <Td isNumeric>{localizePrice(trade.completedDeposits)}</Td>
+        <Td isNumeric>{localizePrice(trade.completedWithrawals)}</Td>
+        <Td isNumeric>{localizePrice(trade.pendingDeposits)}</Td>
+        <Td isNumeric>{localizePrice(trade.pendingWithrawals)}</Td>
+        <Td isNumeric>{localizePrice(trade.balance)}</Td>
+        <Td isNumeric textColor={balanceColor}>
+          {ratedBalanceAvailable ? (
+            `${localizePrice(trade.ratedBalance)} ${symbol}`
+          ) : (
+            <Tooltip
+              label={`Curreny rate is unavailable for ${trade.currency}`}
+            >
+              -
+            </Tooltip>
+          )}
+        </Td>
+      </Tr>
+    );
+  };
+
   return (
     <Table variant='simple'>
       <TableCaption>Trades</TableCaption>
@@ -35,21 +66,7 @@ const Trades: FC<TradesProps> = ({ trades, symbol }) => {
       <Tbody>
         {Object.keys(trades)
           .map((key) => trades[key])
-          .map((trade) => {
-            return (
-              <Tr key={trade.currency}>
-                <Td>{trade.currency}</Td>
-                <Td isNumeric>{localizePrice(trade.completedDeposits)}</Td>
-                <Td isNumeric>{localizePrice(trade.completedWithrawals)}</Td>
-                <Td isNumeric>{localizePrice(trade.pendingDeposits)}</Td>
-                <Td isNumeric>{localizePrice(trade.pendingWithrawals)}</Td>
-                <Td isNumeric>{localizePrice(trade.balance)}</Td>
-                <Td isNumeric>{`${localizePrice(
-                  trade.ratedBalance,
-                )} ${symbol}`}</Td>
-              </Tr>
-            );
-          })}
+          .map(renderRow)}
       </Tbody>
     </Table>
   );

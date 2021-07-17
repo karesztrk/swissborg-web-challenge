@@ -4,7 +4,7 @@ export type Type = 'deposit' | 'withdrawal';
 
 export interface Transaction {
   id: string;
-  timestamp: Date;
+  timestamp: string;
   type: Type;
   status: Status;
   currency: string;

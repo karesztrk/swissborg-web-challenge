@@ -8,8 +8,8 @@ import {
   Tooltip,
   Tr,
 } from '@chakra-ui/react';
-import { Trades as TradesType } from '@types/transaction';
-import { localizePrice } from '@util/format';
+import { Trades as TradesType } from '@/types/transaction';
+import { localizePrice } from '@/util/format';
 import React from 'react';
 import { FC } from 'react';
 

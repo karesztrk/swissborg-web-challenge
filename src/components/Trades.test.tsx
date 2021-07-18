@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import { Trades as TradesType } from '@types/transaction';
+import { Trades as TradesType } from '@/types/transaction';
 import Trades from './Trades';
 
 describe('Trades', () => {
   it('renders without erros', () => {
     const symbol = '';
-    const trades = [];
+    const trades = {} as TradesType;
     render(<Trades symbol={symbol} trades={trades} />);
     expect(screen.getByTestId('trades-table')).toBeInTheDocument();
     expect(screen.getByText('Trades')).toBeInTheDocument();
@@ -35,19 +35,19 @@ describe('Trades', () => {
       trades[currency].currency,
     );
     expect(screen.getByTestId('trade-completed-deposits')).toHaveTextContent(
-      trades[currency].completedDeposits,
+      trades[currency].completedDeposits.toString(),
     );
     expect(screen.getByTestId('trade-completed-withdrawals')).toHaveTextContent(
-      trades[currency].completedWithrawals,
+      trades[currency].completedWithrawals.toString(),
     );
     expect(screen.getByTestId('trade-pending-deposits')).toHaveTextContent(
-      trades[currency].pendingDeposits,
+      trades[currency].pendingDeposits.toString(),
     );
     expect(screen.getByTestId('trade-pending-withdrawals')).toHaveTextContent(
-      trades[currency].pendingWithrawals,
+      trades[currency].pendingWithrawals.toString(),
     );
     expect(screen.getByTestId('trade-balance')).toHaveTextContent(
-      trades[currency].balance,
+      trades[currency].balance.toString(),
     );
     expect(screen.getByTestId('trade-rated-balance')).toHaveTextContent(
       `${trades[currency].ratedBalance} ${symbol}`,
@@ -60,6 +60,11 @@ describe('Trades', () => {
       CHSB: {
         ratedBalance: undefined,
         currency,
+        balance: undefined,
+        completedDeposits: undefined,
+        completedWithrawals: undefined,
+        pendingDeposits: undefined,
+        pendingWithrawals: undefined,
       },
     };
     render(<Trades symbol={symbol} trades={trades} />);

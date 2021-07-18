@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { RatedTransaction } from '@types/transaction';
+import { RatedTransaction } from '@/types/transaction';
 import Transactions from './Transactions';
 
 describe('Transactions', () => {

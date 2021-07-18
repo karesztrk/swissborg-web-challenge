@@ -12,7 +12,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-    '^@components/(.*)$': '<rootDir>/src/components/$1',
-    '^@util/(.*)$': '<rootDir>/src/util/$1',
+    '^@/components/(.*)$': '<rootDir>/src/components/$1',
+    '^@/util/(.*)$': '<rootDir>/src/util/$1',
   },
 };

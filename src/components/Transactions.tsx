@@ -8,8 +8,8 @@ import {
   Tooltip,
   Tr,
 } from '@chakra-ui/react';
-import { RatedTransaction } from '@types/transaction';
-import { localizePrice } from '@util/format';
+import { RatedTransaction } from '@/types/transaction';
+import { localizePrice } from '@/util/format';
 import React, { FC } from 'react';
 
 interface TransactionsProps {

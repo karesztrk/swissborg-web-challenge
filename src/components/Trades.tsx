@@ -64,7 +64,7 @@ const Trades: FC<TradesProps> = ({ trades, symbol }) => {
   };
 
   return (
-    <Table data-testid='trades-table' variant='simple'>
+    <Table data-testid='trades-table'>
       <TableCaption>Trades</TableCaption>
       <Thead>
         <Tr>

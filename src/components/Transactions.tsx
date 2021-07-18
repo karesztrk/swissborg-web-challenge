@@ -50,7 +50,7 @@ const Transactions: FC<TransactionsProps> = ({ ratedTransactions, symbol }) => {
   );
 
   return (
-    <Table data-testid='transactions-table' variant='simple'>
+    <Table data-testid='transactions-table'>
       <TableCaption>Transactions</TableCaption>
       <Thead>
         <Tr>
